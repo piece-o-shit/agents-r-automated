@@ -1,72 +1,59 @@
-import { ChatWindow } from "@/components/ChatWindow";
-import { GuideInfoBox } from "@/components/guide/GuideInfoBox";
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { AgentCard } from '@/components/agents/AgentCard';
+import { GuideInfoBox } from '@/components/guide/GuideInfoBox';
 
 export default function AgentsPage() {
-  const InfoCard = (
-    <GuideInfoBox>
-      <ul>
-        <li className="text-l">
-          🤝
-          <span className="ml-2">
-            This template showcases a{" "}
-            <a href="https://js.langchain.com/" target="_blank">
-              LangChain.js
-            </a>{" "}
-            agent and the Vercel{" "}
-            <a href="https://sdk.vercel.ai/docs" target="_blank">
-              AI SDK
-            </a>{" "}
-            in a{" "}
-            <a href="https://nextjs.org/" target="_blank">
-              Next.js
-            </a>{" "}
-            project.
-          </span>
-        </li>
-        <li>
-          🛠️
-          <span className="ml-2">
-            The agent has memory and access to a search engine and a calculator.
-          </span>
-        </li>
-        <li className="hidden text-l md:block">
-          💻
-          <span className="ml-2">
-            You can find the prompt and model logic for this use-case in{" "}
-            <code>app/api/chat/agents/route.ts</code>.
-          </span>
-        </li>
-        <li>
-          🦜
-          <span className="ml-2">
-            By default, the agent is pretending to be a talking parrot, but you
-            can the prompt to whatever you want!
-          </span>
-        </li>
-        <li className="hidden text-l md:block">
-          🎨
-          <span className="ml-2">
-            The main frontend logic is found in <code>app/agents/page.tsx</code>
-            .
-          </span>
-        </li>
-        <li className="text-l">
-          👇
-          <span className="ml-2">
-            Try asking e.g. <code>What is the weather in Honolulu?</code> below!
-          </span>
-        </li>
-      </ul>
-    </GuideInfoBox>
-  );
-
   return (
-    <ChatWindow
-      endpoint="api/chat/agents"
-      emptyStateComponent={InfoCard}
-      placeholder="Squawk! I'm a conversational agent! Ask me about the current weather in Honolulu!"
-      emoji="🦜"
-      showIntermediateStepsToggle={true}
-    />
+    <div className="container mx-auto py-8">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Agents</h1>
+        <Link href="/agents/create">
+          <Button>Create New Agent</Button>
+        </Link>
+      </div>
+
+      <GuideInfoBox>
+        <ul>
+          <li className="text-l">
+            🤝
+            <span className="ml-2">
+              This template showcases a{" "}
+              <a href="https://js.langchain.com/" target="_blank">
+                LangChain.js
+              </a>{" "}
+              agent and the Vercel{" "}
+              <a href="https://sdk.vercel.ai/docs" target="_blank">
+                AI SDK
+              </a>{" "}
+              in a{" "}
+              <a href="https://nextjs.org/" target="_blank">
+                Next.js
+              </a>{" "}
+              project.
+            </span>
+          </li>
+          <li>
+            🛠️
+            <span className="ml-2">
+              Create custom agents with specific expertise and capabilities.
+            </span>
+          </li>
+          <li className="hidden text-l md:block">
+            💻
+            <span className="ml-2">
+              Each agent can be configured with different models, languages, and personalities.
+            </span>
+          </li>
+        </ul>
+      </GuideInfoBox>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {/* Agent cards will be rendered here */}
+      </div>
+    </div>
   );
 }
